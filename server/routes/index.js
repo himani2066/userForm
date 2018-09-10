@@ -17,7 +17,11 @@ module.exports = (app) => {
   // app.get('/api/users/:userId', usersController.fetchOne);
   app.post('/api/user', usersController.create);
   app.put('/api/user/:userId', usersController.update);
-  app.delete('/api/user/:userId', usersController.destroy);
+  // app.delete('/api/user/:userId', usersController.destroy);
+  app.delete('/api/user/:userId', routesVersioning({ 
+    "1.0.0": usersController.destroyV1, 
+    "2.0.0": usersController.destroyV2 
+    }));
 
   app.post('/api/user/:userId/address', addressesController.create); 
   app.put('/api/user/:id/address', addressesController.update); 

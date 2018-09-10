@@ -24,7 +24,13 @@ module.exports = (sequelize, DataTypes) => {
     	type: DataTypes.STRING,
     	allowNull: true,
     }
-  });
+  },
+  {
+    // timestamp:true,
+    // deletedAt: 'destroyTime',
+    paranoid: true
+  }
+  );
 
 
   User.associate = (models) => {

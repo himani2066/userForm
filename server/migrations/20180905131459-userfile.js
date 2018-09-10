@@ -34,7 +34,21 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-      },
-    }),
+      }, 
+      // deletedAt: {
+      //   type: Sequelize.DATE
+      // }
+  },
+  // {
+  //   timestamp:true,
+  //   deletedAt: 'destroyTime',
+  //   paranoid: true
+  // }
+  // ,
+  // {
+  //   const User = require('../models').User;
+  // }
+  ),
   down: (queryInterface /* , Sequelize */) => queryInterface.dropTable('Users'),
 };
+
