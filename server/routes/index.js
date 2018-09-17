@@ -1,5 +1,5 @@
-const usersController = require('../controllers').users;
-const addressesController = require('../controllers').addresses;
+const usersController = require('../../userComponent').users;
+const addressesController = require('../../addressComponent').addresses;
 var routesVersioning = require('express-routes-versioning')();
 
 module.exports = (app) => {

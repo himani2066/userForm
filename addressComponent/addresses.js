@@ -1,10 +1,13 @@
-const Address = require('../models').Address;
-const User = require('../models').User;
-
+const models = require('../server/models/index');
+const User = require('../userComponent/user');
+const Address = require('./address');
+console.log(User);
+User.hasMany(Address,{ foreignKey: 'userId', onDelete: 'CASCADE'});
+Address.belongsTo(User, {foreignKey: 'userId', onDelete: 'CASCADE'});
 module.exports = {
   
   create(req, res) {
-    return Address
+    return models.Address
       .create({
         addressType: req.body.addressType,
         houseNumber: req.body.houseNumber,
@@ -19,7 +22,7 @@ module.exports = {
   },
 
   update(req, res) {
-    return Address
+    return models.Address
       .find({
         where: {
           id: req.params.id,
@@ -49,7 +52,7 @@ module.exports = {
   },
 
   destroy(req, res) {
-    return Address
+    return models.Address
       .find({
         where: {
           id: req.params.userId,

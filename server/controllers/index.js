@@ -1,5 +1,5 @@
-const users = require('./users');
-const addresses = require('./addresses');
+const users = require('../../userComponent');
+const addresses = require('../../addressComponent');
 
 module.exports = {
   users,

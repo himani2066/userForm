@@ -1,5 +1,7 @@
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+const db = require('../server/models/index');
+
+  const User = db.sequelize.import('users',function(sequelize, DataTypes){ 
+   return sequelize.define('User', {
     fullName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -25,14 +27,13 @@ module.exports = (sequelize, DataTypes) => {
     	allowNull: true,
     }
   });
+});
 
+  // User.associate = (models) => {
+  //     User.hasMany(models.Address, {
+  //       foreignKey: 'userId',
+  //       as: 'addresses',
+  //     });
+  //   };
 
-  User.associate = (models) => {
-      User.hasMany(models.Address, {
-        foreignKey: 'userId',
-        as: 'addresses',
-      });
-    };
-
-  return User;
-};
+module.exports = User;

@@ -1,11 +1,11 @@
-const User = require('../models').User;
-const Address = require('../models').Address;
-
+const User = require('./user');
+const Address = require('../addressComponent').Address;
+User.hasMany(Address,{ foreignKey: 'userId', onDelete: 'CASCADE'});
+Address.belongsTo(User, {foreignKey: 'userId', onDelete: 'CASCADE'});
 module.exports = {
 
   create(req, res) {
-    return User
-      .create({
+    return User.create({
         fullName: req.body.fullName,
         emailId: req.body.emailId,
         password: req.body.password,
@@ -36,7 +36,7 @@ module.exports = {
 
   fetchOne(req, res) {
     return User
-      .findById(req.params.userId, {
+    .findById(req.params.userId, {
         include: [{
           model: Address,
           as: 'addresses',
